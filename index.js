@@ -5,6 +5,10 @@ import './style.css';
 import Grid from '@material-ui/core/Grid';
 import MainPage from './MainPage';
 import MarkdownEditor from './MarkdownEditor';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ShowArticle from './ShowArticle';
+
+
 
 
 class App extends Component {
@@ -18,6 +22,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Router>
         <Grid container spacing={1}>
         
           <Grid item xs={1} lg={2}>
@@ -32,6 +37,13 @@ class App extends Component {
               <MarkdownEditor/>
 
 
+            <Switch>
+              <Route  path='/' component={MainPage} />
+              <Route  path='/addArticle' component={MarkdownEditor} />
+              <Route  path='/showArticle' component={ShowArticle} />
+
+            </Switch>
+
 
           </Grid>
 
@@ -39,6 +51,7 @@ class App extends Component {
           </Grid>
 
         </Grid>
+        </Router>
       </div>
     );
   }
