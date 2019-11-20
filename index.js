@@ -32,15 +32,10 @@ class App extends Component {
 
 
 
-              <MainPage/>
-              <br/>
-              <MarkdownEditor/>
-
 
             <Switch>
-              <Route  path='/' component={MainPage} />
-              <Route  path='/addArticle' component={MarkdownEditor} />
-              <Route  path='/showArticle' component={ShowArticle} />
+              <Route  exact path='/' component={MainPage} />
+              <Route  exact path='/showArticle' component={ShowArticle} />
 
             </Switch>
 
