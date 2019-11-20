@@ -1,0 +1,30 @@
+h1, p {
+  font-family: Lato;
+}
+
+.submitButton{
+  margin:1px;
+  color:yellow;
+
+}
+
+.textField{
+    marginLeft: 1px;
+    marginRight: 1px;
+    width: 500px;
+  }
+
+.card {
+    width: 360px;
+  }
+
+body { font-size: 14px; }
+
+#card{
+  display: inline-block;
+  margin: 0 auto;
+    margin-top:75px;
+    margin-left:50px;
+    height:250px;
+}
+
