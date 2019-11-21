@@ -48,64 +48,9 @@ getData(e) {
         console.log("Error fetching data", e);
       });
 
-/*
-    firebase
-      .database()
-      .ref("myblog")
-      .once("value")
-      .then(snapshot => {
-        const key = snapshot.key;
-        const val = snapshot.val();
-        //console.log(val);
-
-        this.setState({
-          value: val
-        });
-      })
-      .catch(e => {
-        console.log("Error fetching data", e);
-      });
-
-      */
-
-
-/*
-const ref = firebase.firestore().collection('myblog').doc(id);
-    ref.get().then((doc) => {
-      if (doc.exists) {
-
-        console.log(doc.data);
-
-        this.setState({
-          
-          value: doc.data()
-
-        });
-
-      } else {
-        console.log("No such document!");
-      }
-    });
-
-    */
-
-
-/*
-  var ref = firebase.database().ref("myblog");
-var query = ref.doc(id).get();
-query.once("value", function(snapshot) {
-  snapshot.forEach(function(child) {
-    console.log(child.key, child.val().bio);
-  });
-});
-*/
-
-//db.collection('books').doc('fK3ddutEpD2qQqRMXNW5').get()
-
   }
 
   componentDidMount() {
-    //var id = this.props.match.params.id;
     this.getData();
   }
 
@@ -125,7 +70,5 @@ query.once("value", function(snapshot) {
   }
   
 }
-
-//export default ArticleCard;
 
 export default ShowArticle;

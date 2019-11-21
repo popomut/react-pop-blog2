@@ -50,20 +50,15 @@ class ArticleCard extends Component {
 
 
 handleClickCard(id){
-  alert(id);
-
-  //const history = createHashHistory()
-  //history.push('/showArticle')
 
   this.props.history.push('/showArticle/'+id)
-
 
 }
 
 
 
   componentDidMount() {
-    //this.getData();
+
   }
 
 
@@ -77,9 +72,6 @@ handleClickCard(id){
 
     const items = []
 
-    //console.log("dataentrie : " + dataEntries);
-
-    //console.log(dataEntries);
 
     for(var key in dataEntries){
  
@@ -89,28 +81,6 @@ handleClickCard(id){
       //console.log(dataEntries.length);
       var imageInBase64 = dataEntries[key].files[0].base64;
       //console.log(test);
-
-
-
-
-      //const newArray= test.map(element => element.name);
-
-      //console.log(newArray);
-      //console.log(dataEntries[key].files[0].base64);
-      //console.log(dataEntries[key].files);
-
-
-
-//const myArray = [{x:100}, {x:200}, {x:300}];
-
-//const newArray= dataEntries.map(element => element.x);
-//console.log(newArray); // [100, 200, 300]
-
-
-
-   //<div key="{key}">
-   //<p>{dataEntries[key].title}</p>
-   //</div>
 
     items.push(
 
@@ -146,20 +116,6 @@ handleClickCard(id){
 
 
 }
-
-
-/** 
-    var listArticles = dataEntries.map((dataEntries) => {
-
-            
-            return <div><Chip label={messages} color="trinary"/></div> 
-            
-          });
-
-*/
-
-
-
 
     return (
       <div id ="dataDiv">

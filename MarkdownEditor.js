@@ -38,47 +38,37 @@ class MarkdownEditor extends Component {
   }
 
   handleValueChange = e => {
-    //alert(e);
     this.setState({
       value: e
     });
   };
 
   handleTabChange = tab => {
-    //alert(tab);
     this.setState({
       tab: tab
     });
   };
 
   handleTitleChange = title => {
-    //alert(title.target.value);
     this.setState({
       title: title.target.value
     });
   };
 
   handleImagePickerChange = image => {
-    //alert(title.target.value);
     this.setState({
       image: image.target.value
     });
   };
 
   handleImagePickerError = e => {
-    //alert(title.target.value);
+
     console.log(e);
   };
 
 
   onSubmit = e => {
     e.preventDefault();
-
-    //const { title, description, author } = this.state;
-
-    //var a= 'aa';
-    //var b= 'bb';
-    //var c= 'cc';
 
     var title = this.state.title;
     var value = this.state.value;
@@ -100,7 +90,6 @@ class MarkdownEditor extends Component {
     })
 
   };
-
 
   getFiles(files){
     console.log(files);
@@ -157,8 +146,7 @@ class MarkdownEditor extends Component {
         />
 
         <br />
-
-
+        
         <button type="submit" class="btn btn-success">Post Article</button>
         </form>
         </div>
