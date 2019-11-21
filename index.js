@@ -36,6 +36,7 @@ class App extends Component {
             <Switch>
               <Route  exact path='/' component={MainPage} />
               <Route  exact path='/showArticle/:id' component={ShowArticle} />
+              <Route  exact path='/addArticle' component={MarkdownEditor} />
 
             </Switch>
 
