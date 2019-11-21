@@ -13,6 +13,10 @@ import Typography from "@material-ui/core/Typography";
 import Button from '@material-ui/core/Button';
 import { withStyles } from "@material-ui/core/styles";
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+
+
 
 //source page: https://www.npmjs.com/package/react-mde
 //https://codesandbox.io/s/vm1k17ymq0
@@ -48,7 +52,15 @@ class ArticleCard extends Component {
 handleClickCard(id){
   alert(id);
 
+  //const history = createHashHistory()
+  //history.push('/showArticle')
+
+  this.props.history.push('/showArticle')
+
+
 }
+
+
 
   componentDidMount() {
     //this.getData();
@@ -123,9 +135,10 @@ handleClickCard(id){
         <Button size="small" color="primary">
           Share
         </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <div>
+            <Link to="/showArticle" className="btn btn-primary">Read</Link>
+         </div>
+
       </CardActions>
           </Card>
         </div>
@@ -163,4 +176,4 @@ handleClickCard(id){
 
 //export default ArticleCard;
 
-export default withStyles(styles, { withTheme: true })(ArticleCard);
+export default withRouter(withStyles(styles, { withTheme: true })(ArticleCard));
