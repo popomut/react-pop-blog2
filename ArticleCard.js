@@ -55,13 +55,9 @@ handleClickCard(id){
 
 }
 
-
-
   componentDidMount() {
 
   }
-
-
 
   render() {
     //classes = useStyles();
