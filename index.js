@@ -25,10 +25,10 @@ class App extends Component {
         <Router>
         <Grid container spacing={1}>
         
-          <Grid item xs={1} lg={2}>
+          <Grid item xs={1} lg={1}>
           </Grid>
 
-          <Grid item xs={10} lg={8}>
+          <Grid item xs={10} lg={10}>
 
 
 
@@ -43,7 +43,7 @@ class App extends Component {
 
           </Grid>
 
-          <Grid item xs={1} lg={2}>
+          <Grid item xs={1} lg={1}>
           </Grid>
 
         </Grid>
