@@ -55,7 +55,7 @@ handleClickCard(id){
   //const history = createHashHistory()
   //history.push('/showArticle')
 
-  this.props.history.push('/showArticle')
+  this.props.history.push('/showArticle/'+id)
 
 
 }
@@ -85,7 +85,7 @@ handleClickCard(id){
  
 
       console.log('test test =====================================');
-      //console.log("key "+ key);
+      console.log("key "+ key);
       //console.log(dataEntries.length);
       var imageInBase64 = dataEntries[key].files[0].base64;
       //console.log(test);
@@ -114,7 +114,7 @@ handleClickCard(id){
 
     items.push(
 
-        <div id="card" class="card" onClick={this.handleClickCard.bind(this,'1')}>
+        <div id="card" class="card" onClick={this.handleClickCard.bind(this,key)}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia className={classes.media}
