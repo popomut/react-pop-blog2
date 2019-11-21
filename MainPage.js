@@ -35,6 +35,9 @@ class MainPage extends Component {
 
         console.log('print val');
         console.log(val);
+        //need to sort result to be DESC
+        //https://stackoverflow.com/questions/8837454/sort-array-of-objects-by-single-key-with-date-value
+        
         this.setState({
           value: val
         });
