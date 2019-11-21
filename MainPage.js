@@ -17,19 +17,24 @@ class MainPage extends Component {
     super(props);
 
     this.state = initialState;
+
   }
+
+
 
   getData(e) {
     firebase
       .database()
       .ref("myblog")
-      .limitToLast(2)
+      .limitToLast(3)
+      .orderByChild("createDate")
       .once("value")
       .then(snapshot => {
         const key = snapshot.key;
         const val = snapshot.val();
-        //console.log(val);
 
+        console.log('print val');
+        console.log(val);
         this.setState({
           value: val
         });

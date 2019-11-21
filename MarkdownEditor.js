@@ -73,14 +73,14 @@ class MarkdownEditor extends Component {
     var title = this.state.title;
     var value = this.state.value;
     var files = this.state.files;
+    var createDate = Date();
     
-    //alert(title);
-    //alert(value);
 
     firebase.database().ref('myblog').push({
         title,
         value,
-        files
+        files,
+        createDate,
     }).then((data)=>{
         //success callback
         console.log('data ' , data)
@@ -146,7 +146,7 @@ class MarkdownEditor extends Component {
         />
 
         <br />
-        
+
         <button type="submit" class="btn btn-success">Post Article</button>
         </form>
         </div>
