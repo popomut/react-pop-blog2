@@ -23,6 +23,7 @@ class MainPage extends Component {
     firebase
       .database()
       .ref("myblog")
+      .limitToLast(2)
       .once("value")
       .then(snapshot => {
         const key = snapshot.key;
