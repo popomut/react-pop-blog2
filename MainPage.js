@@ -16,6 +16,18 @@ class MainPage extends Component {
     super(props);
 
     this.state = initialState;
+    this.sortByKey = this.sortByKey.bind(this);
+  }
+
+  //DESC sort
+  sortByKey(array, key) {
+    //alert('sort method');
+    
+    var newArrayDataOfOjbect = Object.values(array)
+    return newArrayDataOfOjbect.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return (((x < y) ? -1 : ((x > y) ? 1 : 0)))*(-1);
+    });
   }
 
   getData(e) {
@@ -37,7 +49,7 @@ class MainPage extends Component {
       .database()
       .ref("myblog")
       .limitToLast(3)
-      //.orderByChild("createDate")
+      .orderByChild("createDate")
       .once("value")
       .then(snapshot => {
         const key = snapshot.key;
@@ -47,6 +59,7 @@ class MainPage extends Component {
         console.log(val);
         //need to sort result to be DESC
         //https://stackoverflow.com/questions/8837454/sort-array-of-objects-by-single-key-with-date-value
+        val = this.sortByKey(val, 'createDate');
 
         this.setState({
           value: val
