@@ -4,7 +4,6 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import firebase from "./firebase/Firebase";
 import ArticleCard from "./ArticleCard";
 
-
 //source page: https://www.npmjs.com/package/react-mde
 //https://codesandbox.io/s/vm1k17ymq0
 
@@ -17,27 +16,38 @@ class MainPage extends Component {
     super(props);
 
     this.state = initialState;
-
   }
 
-
-
   getData(e) {
+    //anonymouse authentication
+    firebase
+      .auth()
+      .signInAnonymously()
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log("login error");
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+
+    //get data from firebase
     firebase
       .database()
       .ref("myblog")
       .limitToLast(3)
-      .orderByChild("createDate")
+      //.orderByChild("createDate")
       .once("value")
       .then(snapshot => {
         const key = snapshot.key;
         const val = snapshot.val();
 
-        console.log('print val');
+        console.log("print val");
         console.log(val);
         //need to sort result to be DESC
         //https://stackoverflow.com/questions/8837454/sort-array-of-objects-by-single-key-with-date-value
-        
+
         this.setState({
           value: val
         });
@@ -59,7 +69,7 @@ class MainPage extends Component {
         <br />
         <br />
         <br />
-        <ArticleCard data={this.state.value}/>
+        <ArticleCard data={this.state.value} />
       </div>
     );
   }

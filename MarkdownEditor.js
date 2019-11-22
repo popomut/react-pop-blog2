@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import ReactMde from "react-mde";
 import * as Showdown from "showdown";
 import "react-mde/lib/styles/css/react-mde-all.css";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import firebase from "./firebase/Firebase";
-import FileBase64 from 'react-file-base64';
+import FileBase64 from "react-file-base64";
 
 //source page: https://www.npmjs.com/package/react-mde
 //https://codesandbox.io/s/vm1k17ymq0
@@ -17,11 +17,7 @@ const initialState = {
   files: []
 };
 
-
-
 class MarkdownEditor extends Component {
-
-
   constructor(props) {
     super(props);
 
@@ -62,10 +58,8 @@ class MarkdownEditor extends Component {
   };
 
   handleImagePickerError = e => {
-
     console.log(e);
   };
-
 
   onSubmit = e => {
     e.preventDefault();
@@ -73,85 +67,94 @@ class MarkdownEditor extends Component {
     var title = this.state.title;
     var value = this.state.value;
     var files = this.state.files;
-    var createDate = Date();
-    
+    var createDate = new Date().getTime();
 
-    firebase.database().ref('myblog').push({
+    //anonymouse authentication
+    firebase
+      .auth()
+      .signInAnonymously()
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log("login error");
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+
+    firebase
+      .database()
+      .ref("myblog")
+      .push({
         title,
         value,
         files,
-        createDate,
-    }).then((data)=>{
+        createDate
+      })
+      .then(data => {
         //success callback
-        console.log('data ' , data)
-    }).catch((error)=>{
+        console.log("data ", data);
+      })
+      .catch(error => {
         //error callback
-        console.log('error ' , error)
-    })
-
+        console.log("error ", error);
+      });
   };
 
-  getFiles(files){
+  getFiles(files) {
     console.log(files);
     console.log(files[0].name);
     console.log(files[0].base64);
 
-    this.setState({ files: files })
+    this.setState({ files: files });
   }
 
   render() {
     return (
       <div className="container">
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <br />
+        <br />
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">
-              Add an article
-            </h3>
+            <h3 class="panel-title">Add an article</h3>
           </div>
-      <form name='myform' onSubmit={this.onSubmit}>
-      
-      <TextField
-          id="outlined-basic"
-          className='textField'
-          onChange={this.handleTitleChange}
-          label="What is article title? Put it here please."
+          <form name="myform" onSubmit={this.onSubmit}>
+            <TextField
+              id="outlined-basic"
+              className="textField"
+              onChange={this.handleTitleChange}
+              label="What is article title? Put it here please."
+              margin="normal"
+              variant="outlined"
+            />
 
-          margin="normal"
-          variant="outlined"
-        />
+            <br />
+            <br />
 
+            <FileBase64 multiple={true} onDone={this.getFiles.bind(this)} />
 
-        <br/>
-        <br/>
+            <br />
+            <br />
 
-        <FileBase64 
-        multiple={ true }
-        onDone={ this.getFiles.bind(this) } />
+            <ReactMde
+              onChange={this.handleValueChange}
+              onTabChange={this.handleTabChange}
+              value={this.state.value}
+              generateMarkdownPreview={markdown =>
+                Promise.resolve(this.converter.makeHtml(markdown))
+              }
+              selectedTab={this.state.tab}
+            />
 
+            <br />
 
-        <br/>
-        <br/>
-        
-        <ReactMde
-          onChange={this.handleValueChange}
-          onTabChange={this.handleTabChange}
-          value={this.state.value}
-          generateMarkdownPreview={markdown =>
-            Promise.resolve(this.converter.makeHtml(markdown))
-          }
-          selectedTab={this.state.tab}
-        />
-
-        <br />
-
-        <button type="submit" class="btn btn-success">Post Article</button>
-        </form>
+            <button type="submit" class="btn btn-success">
+              Post Article
+            </button>
+          </form>
         </div>
       </div>
-      
     );
   }
 }
