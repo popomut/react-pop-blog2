@@ -71,6 +71,14 @@ class MarkdownEditor extends Component {
   onSubmit = e => {
     e.preventDefault();
 
+    if(this.state.files.length==0)
+    {
+      alert("please select a cover image");
+      return;
+
+    }
+
+
     var title = this.state.title;
     var value = this.state.value;
     var files = this.state.files;
@@ -129,8 +137,9 @@ class MarkdownEditor extends Component {
             <h3 class="panel-title">Add an article</h3>
           </div>
           <form name="myform" onSubmit={this.onSubmit}>
+
             <TextField
-              id="outlined-basic"
+              id="title"
               className="textField"
               onChange={this.handleTitleChange}
               label="What is article title? Put it here please."
@@ -141,13 +150,13 @@ class MarkdownEditor extends Component {
             <br />
             <br />
 
-            <FileBase64 multiple={true} onDone={this.getFiles.bind(this)} />
+            <FileBase64 id="fileSelector" multiple={true} onDone={this.getFiles.bind(this)} />
 
             <br />
             <br />
 
             <TextField
-              id="filled-multiline-static"
+              id="description"
               label="What is title description? put it here please."
               multiline
               rows="4"
