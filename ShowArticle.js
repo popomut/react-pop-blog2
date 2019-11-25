@@ -30,6 +30,21 @@ getData(e) {
 
   var id = this.props.match.params.id;
 
+  //anonymouse authentication
+    firebase
+      .auth()
+      .signInAnonymously()
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log("login error");
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+
+      console.log("id : " + id);
+
   firebase
       .database()
       .ref("myblog/" + id)
