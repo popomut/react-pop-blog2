@@ -11,7 +11,8 @@ import FileBase64 from "react-file-base64";
 //https://codesandbox.io/s/vm1k17ymq0
 
 const initialState = {
-  title: "test title",
+  title: "",
+  description: "",
   value: "**Hello world!!!**",
   tab: "write",
   files: []
@@ -51,6 +52,12 @@ class MarkdownEditor extends Component {
     });
   };
 
+  handleDescriptionChange = description => {
+    this.setState({
+      description: description.target.value
+    });
+  };
+
   handleImagePickerChange = image => {
     this.setState({
       image: image.target.value
@@ -68,6 +75,7 @@ class MarkdownEditor extends Component {
     var value = this.state.value;
     var files = this.state.files;
     var createDate = new Date().getTime();
+    var description = this.state.description;
 
     //anonymouse authentication
     firebase
@@ -87,6 +95,7 @@ class MarkdownEditor extends Component {
       .ref("myblog")
       .push({
         title,
+        description,
         value,
         files,
         createDate
@@ -133,6 +142,21 @@ class MarkdownEditor extends Component {
             <br />
 
             <FileBase64 multiple={true} onDone={this.getFiles.bind(this)} />
+
+            <br />
+            <br />
+
+            <TextField
+              id="filled-multiline-static"
+              label="What is title description? put it here please."
+              multiline
+              rows="4"
+              defaultValue=""
+              className="textField"
+              onChange={this.handleDescriptionChange}
+              margin="normal"
+              variant="filled"
+            />
 
             <br />
             <br />
