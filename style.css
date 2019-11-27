@@ -15,16 +15,18 @@ h1, p {
   }
 
 .card {
-    width: 320px;
+    width: 380px;
   }
 
 body { font-size: 14px; }
 
 #card{
   display: inline-block;
-  margin: 0 auto;
+    margin: 0 auto;
     margin-top:20px;
-    margin-left:50px;
+    margin-left:0px;
     height:250px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 

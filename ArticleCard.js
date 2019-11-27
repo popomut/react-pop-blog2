@@ -10,13 +10,11 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-
-
 
 //source page: https://www.npmjs.com/package/react-mde
 //https://codesandbox.io/s/vm1k17ymq0
@@ -25,18 +23,14 @@ const initialState = {
   value: "test"
 };
 
-
 const styles = theme => ({
   card: {
-    maxWidth: 345,
-    
+    maxWidth: 345
   },
   media: {
-    height: 140,
-    
+    height: 140
   }
 });
-
 
 class ArticleCard extends Component {
   constructor(props) {
@@ -45,20 +39,14 @@ class ArticleCard extends Component {
     this.state = initialState;
 
     this.handleClickCard = this.handleClickCard.bind(this);
-
   }
 
-
-handleClickCard(id){
-
-  alert(id);
-  this.props.history.push('/showArticle/'+id)
-
-}
-
-  componentDidMount() {
-
+  handleClickCard(id) {
+    alert(id);
+    this.props.history.push("/showArticle/" + id);
   }
+
+  componentDidMount() {}
 
   render() {
     //classes = useStyles();
@@ -67,26 +55,26 @@ handleClickCard(id){
 
     const { classes } = this.props;
 
-    const items = []
+    const items = [];
 
-
-    for(var key in dataEntries){
- 
-
-      console.log('test test =====================================');
-      console.log("key "+ key);
+    for (var key in dataEntries) {
+      console.log("test test =====================================");
+      console.log("key " + key);
       //console.log(dataEntries.length);
       var imageInBase64 = dataEntries[key].files[0].base64;
       //console.log(test);
 
-    items.push(
-
-        <div id="card" class="card" onClick={this.handleClickCard.bind(this,key)}>
+      items.push(
+        <div
+          id="card"
+          class="card"
+          onClick={this.handleClickCard.bind(this, key)}
+        >
           <Card className={classes.card}>
             <CardActionArea>
-              <CardMedia className={classes.media}
+              <CardMedia
+                className={classes.media}
                 image={imageInBase64}
-
                 title={dataEntries[key].title}
               />
               <CardContent>
@@ -98,30 +86,27 @@ handleClickCard(id){
                 </Typography>
               </CardContent>
             </CardActionArea>
-<CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <div>
-            <Link to="/showArticle" className="btn btn-primary">Read</Link>
-         </div>
-
-      </CardActions>
+            <CardActions>
+              <Button size="small" color="primary">
+                Share
+              </Button>
+              <div>
+                <Link to="/showArticle" className="btn btn-primary">
+                  Read
+                </Link>
+              </div>
+            </CardActions>
           </Card>
         </div>
-    )
-
-
-}
+      );
+    }
 
     return (
-      <div id ="dataDiv" align="center">
+      <div id="dataDiv" align="center">
         <br />
         <br />
 
-              
-                {items}
-              
+        {items}
       </div>
     );
   }
