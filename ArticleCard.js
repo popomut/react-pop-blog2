@@ -99,9 +99,7 @@ class ArticleCard extends Component {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
+
                 <div>
                   <Link to="/showArticle" className="btn btn-primary">
                     Read
@@ -139,9 +137,7 @@ class ArticleCard extends Component {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
+
                 <div>
                   <Link to="/showArticle" className="btn btn-primary">
                     Read
