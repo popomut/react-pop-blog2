@@ -17,6 +17,10 @@ h1, p {
 .card {
     width: 350px;
   }
+.bigCard{
+    width: 600px;
+
+}
 
 body { font-size: 14px; }
 

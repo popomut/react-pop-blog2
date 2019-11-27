@@ -48,7 +48,7 @@ class MainPage extends Component {
     firebase
       .database()
       .ref("myblog")
-      .limitToLast(3)
+      .limitToLast(5)
       .orderByChild("createDate")
       .once("value")
       .then(snapshot => {

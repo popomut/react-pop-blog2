@@ -27,8 +27,14 @@ const styles = theme => ({
   card: {
     maxWidth: 345
   },
+  bigCard: {
+    maxWidth: 600
+  },
   media: {
     height: 140
+  },
+  bigMedia: {
+    height: 250
   }
 });
 
@@ -56,49 +62,96 @@ class ArticleCard extends Component {
     const { classes } = this.props;
 
     const items = [];
-
+    var count = 0;
     for (var key in dataEntries) {
+      count = count + 1;
       console.log("test test =====================================");
       console.log("key " + key);
       //console.log(dataEntries.length);
       var imageInBase64 = dataEntries[key].files[0].base64;
       //console.log(test);
 
-      items.push(
-        <div
-          id="card"
-          class="card"
-          onClick={this.handleClickCard.bind(this, key)}
-        >
-          <Card className={classes.card}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={imageInBase64}
-                title={dataEntries[key].title}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {dataEntries[key].title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {dataEntries[key].value}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button size="small" color="primary">
-                Share
-              </Button>
-              <div>
-                <Link to="/showArticle" className="btn btn-primary">
-                  Read
-                </Link>
-              </div>
-            </CardActions>
-          </Card>
-        </div>
-      );
+      if (count != 1) {
+        items.push(
+          <div
+            id="card"
+            class="card"
+            onClick={this.handleClickCard.bind(this, key)}
+          >
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={imageInBase64}
+                  title={dataEntries[key].title}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {dataEntries[key].title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {dataEntries[key].value}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+                <div>
+                  <Link to="/showArticle" className="btn btn-primary">
+                    Read
+                  </Link>
+                </div>
+              </CardActions>
+            </Card>
+          </div>
+        );
+      } else {
+        items.push(
+          <div
+            id="card"
+            class="bigCard"
+            onClick={this.handleClickCard.bind(this, key)}
+          >
+            <Card className={classes.bigCard}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.bigMedia}
+                  image={imageInBase64}
+                  title={dataEntries[key].title}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {dataEntries[key].title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {dataEntries[key].value}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+                <div>
+                  <Link to="/showArticle" className="btn btn-primary">
+                    Read
+                  </Link>
+                </div>
+              </CardActions>
+            </Card>
+          </div>
+        );
+      }
     }
 
     return (
