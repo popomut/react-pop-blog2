@@ -118,7 +118,7 @@ handleClickCard(id){
       <div id ="dataDiv" align="center">
         <br />
         <br />
-        <br />
+
               
                 {items}
               
